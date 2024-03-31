@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculator</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <style>
+	 body {
+      background: linear-gradient(135deg, #667eea, #764ba2);
+    }
+    .button {
+      transition: background-color 0.3s, transform 0.1s;
+    }
+
+    .button:hover {
+      background-color: #4a5568;
+    }
+
+    .button:active {
+      transform: scale(0.95);
+      background-color: #718096;
+    }
+
+    .animation {
+      animation: pulse 1.5s ease-in-out infinite alternate;
+    }
+
+    @keyframes pulse {
+      0% {
+        transform: scale(1);
+      }
+
+      100% {
+        transform: scale(1.1);
+      }
+    }
+  </style>
+</head>
+
+<body class="bg-gray-200 flex justify-center items-center h-screen">
+  <div class="bg-white rounded-lg shadow-md p-8">
+    <input id="display" class="bg-gray-100 text-right text-4xl p-2 rounded mb-4" value="0" type="text" readonly>
+    
+    <div class="grid grid-cols-4 gap-4">
+      <input type="button" class="col-span-3 md:col-span-3 bg-gray-200 text-gray-800 font-bold text-2xl py-4 px-2 rounded button" value="7" onclick="appendToDisplay('7')">
+      <input type="button" class="bg-gray-200 text-gray-800 font-bold text-2xl py-4 px-2 rounded button" value="8" onclick="appendToDisplay('8')">
+      <input type="button" class="bg-gray-200 text-gray-800 font-bold text-2xl py-4 px-2 rounded button" value="9" onclick="appendToDisplay('9')">
+      <input type="button" class="bg-gray-200 text-gray-800 font-bold text-2xl py-4 px-2 rounded button animation" value="/" onclick="appendToDisplay('/')">
+      <input type="button" class="bg-gray-200 text-gray-800 font-bold text-2xl py-4 px-2 rounded button" value="4" onclick="appendToDisplay('4')">
+      <input type="button" class="bg-gray-200 text-gray-800 font-bold text-2xl py-4 px-2 rounded button" value="5" onclick="appendToDisplay('5')">
+      <input type="button" class="bg-gray-200 text-gray-800 font-bold text-2xl py-4 px-2 rounded button" value="6" onclick="appendToDisplay('6')">
+      <input type="button" class="bg-gray-200 text-gray-800 font-bold text-2xl py-4 px-2 rounded button animation" value="*" onclick="appendToDisplay('*')">
+      <input type="button" class="bg-gray-200 text-gray-800 font-bold text-2xl py-4 px-2 rounded button" value="1" onclick="appendToDisplay('1')">
+      <input type="button" class="bg-gray-200 text-gray-800 font-bold text-2xl py-4 px-2 rounded button" value="2" onclick="appendToDisplay('2')">
+      <input type="button" class="bg-gray-200 text-gray-800 font-bold text-2xl py-4 px-2 rounded button" value="3" onclick="appendToDisplay('3')">
+      <input type="button" class="bg-gray-200 text-gray-800 font-bold text-2xl py-4 px-2 rounded button animation" value="-" onclick="appendToDisplay('-')">
+      <input type="button" class="bg-gray-200 text-gray-800 font-bold text-2xl py-4 px-2 rounded button" value="0" onclick="appendToDisplay('0')">
+      <input type="button" class="bg-gray-200 text-gray-800 font-bold text-2xl py-4 px-2 rounded button" value="." onclick="appendToDisplay('.')">
+      <input type="button" class="bg-gray-200 text-gray-800 font-bold text-2xl py-4 px-2 rounded button animation" value="=" onclick="calculateResult()">
+      <input type="button" class="bg-gray-200 text-gray-800 font-bold text-2xl py-4 px-2 rounded button animation" value="+" onclick="appendToDisplay('+')">
+      <input type="button" class="col-span-2 md:col-span-2 bg-gray-200 text-gray-800 font-bold text-2xl py-4 px-2 rounded button" value="Clear" onclick="clearDisplay()">
+    </div>
+  </div>
+
+  <script>
+    function appendToDisplay(digit) {
+      let display = document.getElementById('display');
+  
+      if (display.value === "0") {
+        display.value = digit;
+      } else {
+        display.value += digit;
+      }
+    }
+
+    function calculateResult() {
+      let display = document.getElementById('display');
+      let result = display.value;
+      let totalResult = eval(result);
+      display.value = totalResult;
+    }
+
+    function clearDisplay() {
+      let display = document.getElementById("display");
+      display.value = "0";
+    }
+  </script>
+</body>
+</html>
